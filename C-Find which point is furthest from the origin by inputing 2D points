@@ -1,0 +1,62 @@
+
+#include<stdio.h>
+#include<math.h>
+
+int main()
+{
+    int iPoints = 1, iMaxPoints, num; //iPoint is for counting
+    float input, fX, fY, distance, maxX, maxY, maxDistnce = 0;
+
+    printf("How many 2D points you want to enter: ");
+    scanf("%d", &num);
+
+    for(int i = 0; i<num; i++)
+    {
+        //Entering X-Coordinant
+        printf("\nEnter %d point in X-Coordinate: ", iPoints); //ipoints == num
+        scanf("%f", &fX);
+
+        if(fX == -1)
+        {
+            iPoints--; // Subtract 1 since point wasn't entered
+            break;
+        }
+
+        //Entering Y-Coordinant
+        printf("\nEnter %d point in Y-Coordinate: ", iPoints); //ipoints == num
+        scanf("%f", &fY);
+
+        if(fY == -1)
+        {
+            iPoints--; // Subtract 1 since point wasn't entered
+            break;
+        }
+
+        distance = sqrt((fX * fX) + (fY * fY));
+
+        //printf("\nDistance point %d from origin: %.2f\n", iPoints, distance);
+
+        if(distance > maxDistnce)
+        {
+            maxDistnce = distance;
+            maxX = fX;
+            maxY = fY;
+            iMaxPoints = iPoints;
+        }
+        iPoints++;
+    }
+
+    // Print Max values or No Points Entered
+    if(iPoints > 0)
+    {
+        printf("\nPoints %d (%.2f, %.2f) Distance %.2f furthest from origin (0, 0)\n\n", iMaxPoints, maxX, maxY, maxDistnce);
+    }
+    else
+    {
+        printf("\nNo points entered\n");
+    }
+
+    //getch();
+
+    return 0;
+}
